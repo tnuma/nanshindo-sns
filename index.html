@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>南信堂SNS方針</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .flowchart-arrow {
+            font-size: 3rem;
+            line-height: 1;
+            color: #FDE74C;
+            text-shadow: 0 0 5px rgba(0,0,0,0.2);
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background-color: #5BC0EB;
+            border-radius: 2px;
+        }
+        .timeline-item {
+            position: relative;
+            width: 50%;
+        }
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            padding-right: 2rem;
+            text-align: right;
+        }
+        .timeline-item:nth-child(even) {
+            left: 50%;
+            padding-left: 2rem;
+            text-align: left;
+        }
+        .timeline-dot {
+            position: absolute;
+            top: 1.25rem;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: #FDE74C;
+            border: 4px solid #0B2D48;
+            z-index: 10;
+        }
+        .timeline-item:nth-child(odd) .timeline-dot {
+            right: -12px;
+        }
+        .timeline-item:nth-child(even) .timeline-dot {
+            left: -12px;
+        }
+
+        @media (max-width: 767px) {
+            .timeline::before {
+                left: 10px;
+                transform: translateX(0);
+            }
+            .timeline-item {
+                width: 100%;
+                left: 0 !important;
+                padding-left: 3rem;
+                padding-right: 0;
+                text-align: left !important;
+            }
+            .timeline-dot {
+                 left: 0 !important;
+            }
+        }
+    </style>
+</head>
+<body class="bg-[#F0F4F8]">
+
+    <header class="bg-[#0B2D48] text-white p-6 shadow-lg">
+        <div class="container mx-auto text-center">
+            <h1 class="text-3xl md:text-4xl font-black tracking-tight">南信堂SNS方針</h1>
+            <p class="mt-2 text-lg text-gray-300">2025年6月24日 方針・話し合い結果の共有</p>
+        </div>
+    </header>
+
+    <main class="container mx-auto p-4 md:p-8">
+
+        <section id="why-change" class="text-center py-16">
+            <h2 class="text-2xl md:text-3xl font-bold text-[#0B2D48]">1. 現状の問題点と、今後の目的</h2>
+            <p class="mt-4 max-w-3xl mx-auto text-gray-700 text-lg">
+                まず、現状のSNS運用には以下の問題点があることを共有します。
+            </p>
+            <ul class="mt-4 text-left inline-block bg-red-50 border-l-4 border-red-400 p-4">
+              <li class="font-bold">・制作コストに見合う効果が出ていない。</li>
+              <li class="font-bold">・お客様との深い関係づくりに繋がっていない。</li>
+            </ul>
+            <p class="mt-4 max-w-3xl mx-auto text-gray-700 text-lg">
+                この課題を解決するため、今後は<strong class="text-[#246EB9]">各SNSの得意なことを活かし、より効率よく効果的に</strong>南信堂のファンを増やしていくことを目的とします。
+            </p>
+            <div class="mt-12 bg-white rounded-lg shadow-xl p-6 md:p-10">
+                 <h3 class="text-xl font-bold text-[#0B2D48]">根拠：投稿の種類によってお客様の反応が違う</h3>
+                 <p class="mt-2 text-gray-700">データ上、お客様の反応が最も良いのは<strong class="text-[#FDE74C] bg-[#0B2D48] px-1 rounded">「複数枚の写真投稿」</strong>である。よって、今後はこの形式に注力する。
+                 </p>
+                <div class="mt-6 chart-container">
+                    <canvas id="engagementChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section id="roles" class="py-16">
+            <h2 class="text-2xl md:text-3xl font-bold text-center text-[#0B2D48] mb-12">2. SNSの役割分担</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                <div class="bg-white rounded-lg shadow-lg p-8 text-center border-t-8 border-[#5BC0EB]">
+                    <div class="text-5xl mb-4">📸</div>
+                    <h3 class="text-2xl font-bold text-[#0B2D48]">インスタグラム</h3>
+                    <p class="mt-2 text-lg font-semibold text-[#246EB9]">お店のファンを増やす<br>「情報誌」を作る</p>
+                    <p class="mt-4 text-gray-600">
+                        商品の紹介だけでなく、暮らしや仕事が豊かになるような、つい読みたくなる特集記事のような投稿を増やす。お客様との交流を深める場所とする。
+                    </p>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg p-8 text-center border-t-8 border-[#FDE74C]">
+                    <div class="text-5xl mb-4">📺</div>
+                    <h3 class="text-2xl font-bold text-[#0B2D48]">YouTube</h3>
+                    <p class="mt-2 text-lg font-semibold text-[#246EB9]">専門家としての信頼を得る<br>「解説チャンネル」を作る</p>
+                    <p class="mt-4 text-gray-600">
+                        「なぜこの商品は良いのか」を深く、分かりやすく解説する。「買うなら、まず南信堂の解説を見よう」と思ってもらえるような、信頼される情報源を目指す。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="what-to-do" class="py-16 bg-white rounded-lg shadow-xl p-6 md:p-10">
+            <h2 class="text-2xl md:text-3xl font-bold text-center text-[#0B2D48] mb-12">3. 具体的な投稿内容</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div>
+                    <h3 class="text-xl font-bold text-[#0B2D48] mb-4">インスタグラムの投稿内容</h3>
+                    <p class="mb-4 text-gray-600">「複数枚の写真投稿」を中心に、以下の内容を発信する。</p>
+                    <ul class="space-y-4">
+                        <li class="bg-[#F0F4F8] p-4 rounded-lg shadow">
+                            <h4 class="font-bold text-[#246EB9]">ストーリー性のある商品紹介</h4>
+                            <p class="text-sm text-gray-600">商品の歴史や隠れた機能など、選ぶ価値がある理由をじっくり解説する。</p>
+                        </li>
+                        <li class="bg-[#F0F4F8] p-4 rounded-lg shadow">
+                            <h4 class="font-bold text-[#246EB9]">役立つ情報・ノウハウ</h4>
+                            <p class="text-sm text-gray-600">「デスク周りの整理術」や「手帳活用術」など、お客様の役に立つ情報を発信する。</p>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold text-[#0B2D48] mb-4">YouTubeの動画内容（3本柱）</h3>
+                     <p class="mb-4 text-gray-600">購買に直結させるより、まずは面白いチャンネルを目指す。</p>
+                     <ul class="space-y-4">
+                        <li class="bg-[#F0F4F8] p-4 rounded-lg shadow">
+                            <h4 class="font-bold text-[#246EB9]">① 短い動画での商品紹介</h4>
+                            <p class="text-sm text-gray-600">「悩み→解決」の流れで、商品の魅力を分かりやすく伝えるショート動画を制作する。</p>
+                        </li>
+                        <li class="bg-[#F0F4F8] p-4 rounded-lg shadow">
+                            <h4 class="font-bold text-[#246EB9]">② 商品の「深掘り解説」</h4>
+                            <p class="text-sm text-gray-600">商品に関連した技術や歴史など、興味深い情報を掘り下げて解説する。</p>
+                        </li>
+                        <li class="bg-[#F0F4F8] p-4 rounded-lg shadow">
+                            <h4 class="font-bold text-[#246EB9]">③ 話題の商品の「トレンド解説」</h4>
+                            <p class="text-sm text-gray-600">話題の商品や最新技術を取り上げ、自社取扱商品に繋げながら解説する。</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="workflow" class="py-16 bg-[#0B2D48] text-white rounded-lg shadow-xl p-6 md:p-10">
+            <h2 class="text-2xl md:text-3xl font-bold text-center mb-12">4. コンテンツ制作の進め方</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
+                
+                <div class="bg-white/10 p-6 rounded-lg h-full">
+                    <h3 class="text-xl font-bold text-center mb-4">基本方針：YouTube本編動画の「再利用」で効率化</h3>
+                    <div class="flex flex-col items-center justify-center gap-4">
+                        <div class="bg-[#246EB9] p-4 rounded-lg shadow-lg text-center border-2 border-[#5BC0EB]">
+                            <p class="text-4xl">🎬</p>
+                            <p class="font-semibold">YouTube用の長い解説動画</p>
+                            <p class="text-sm text-gray-300">一番時間と労力をかける</p>
+                        </div>
+                        <div class="transform rotate-90 flowchart-arrow">
+                            <span>→</span>
+                        </div>
+                        <div class="w-full text-center">
+                            <p class="font-semibold mb-2">これを元に、以下の投稿を再利用して作る</p>
+                             <div class="grid grid-cols-2 gap-4 text-center">
+                                <div class="bg-[#0B2D48] p-3 rounded-md">
+                                    <p class="text-2xl">📺</p><p class="text-xs font-semibold">YT ショート</p>
+                                </div>
+                                <div class="bg-[#0B2D48] p-3 rounded-md">
+                                    <p class="text-2xl">📑</p><p class="text-xs font-semibold">インスタ写真投稿</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white/10 p-6 rounded-lg h-full">
+                    <h3 class="text-xl font-bold text-center mb-4">補足方針：各SNSに特化した「単独制作」</h3>
+                    <p class="text-center text-gray-300 mb-4">再利用とは別に、必要に応じて単独でも投稿を制作する。</p>
+                    <div class="space-y-4">
+                        <div class="bg-[#0B2D48] p-4 rounded-md text-center">
+                            <p class="text-2xl">📺</p>
+                            <p class="font-semibold">独立したショート動画</p>
+                            <p class="text-xs text-gray-400">（例：急上昇の話題など）</p>
+                        </div>
+                        <div class="bg-[#0B2D48] p-4 rounded-md text-center">
+                            <p class="text-2xl">📑</p>
+                            <p class="font-semibold">独立したインスタ投稿</p>
+                             <p class="text-xs text-gray-400">（例：セールのお知らせなど）</p>
+                        </div>
+                         <div class="bg-[#0B2D48] p-4 rounded-md text-center">
+                            <p class="text-2xl">✨</p>
+                            <p class="font-semibold">独立したストーリー</p>
+                             <p class="text-xs text-gray-400">（例：リアルタイムの出来事など）</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="roadmap" class="py-16">
+            <h2 class="text-2xl md:text-3xl font-bold text-center text-[#0B2D48] mb-16">5. 今後のスケジュール</h2>
+            <div class="relative max-w-4xl mx-auto timeline">
+                <div class="timeline-item mb-12">
+                    <div class="timeline-dot"></div>
+                    <div class="bg-white p-6 rounded-lg shadow-lg">
+                        <p class="text-sm font-semibold text-[#246EB9]">第1段階 (最初の1〜2ヶ月)</p>
+                        <h3 class="text-xl font-bold text-[#0B2D48]">準備と試運転</h3>
+                        <p class="mt-2 text-gray-600">インスタ投稿のデザインを固める。YouTubeの解説動画を2〜3本制作し、お客様の反応を見る。</p>
+                    </div>
+                </div>
+                <div class="timeline-item mb-12">
+                    <div class="timeline-dot"></div>
+                     <div class="bg-white p-6 rounded-lg shadow-lg">
+                        <p class="text-sm font-semibold text-[#246EB9]">第2段階 (3〜6ヶ月後)</p>
+                        <h3 class="text-xl font-bold text-[#0B2D48]">本格スタートと改善</h3>
+                        <p class="mt-2 text-gray-600">毎週投稿するペースを確立する。データを見て、どのテーマが人気かを見極め、内容を改善していく。</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="bg-white p-6 rounded-lg shadow-lg">
+                        <p class="text-sm font-semibold text-[#246EB9]">第3段階 (半年以降)</p>
+                        <h3 class="text-xl font-bold text-[#0B2D48]">ファンとの交流と成長</h3>
+                        <p class="mt-2 text-gray-600">お客様から「この商品を解説してほしい」などのリクエストを募集するなど、交流を深める企画を開始する。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="kpis" class="py-16 bg-white rounded-lg shadow-xl p-6 md:p-10">
+            <h2 class="text-2xl md:text-3xl font-bold text-center text-[#0B2D48] mb-8">6. 何を目標とするか？（成果の目安）【決定】</h2>
+            <p class="text-center text-gray-600 max-w-2xl mx-auto mb-10">フォロワーの数だけを追いかけるのではなく、本当に意味のある数字を目標とする。</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <div>
+                    <h3 class="text-xl font-bold text-[#0B2D48] mb-4 flex items-center gap-2">📸 Instagramの目標</h3>
+                    <ul class="space-y-3 text-gray-700">
+                        <li class="flex items-start"><span class="text-xl mr-3">💾</span><div><strong>「後で見る」ために保存された数：</strong>投稿が本当に役立ったかの証明。</div></li>
+                        <li class="flex items-start"><span class="text-xl mr-3">💬</span><div><strong>コメントや「いいね！」の数：</strong>ファンとの繋がりの強さ。</div></li>
+                        <li class="flex items-start"><span class="text-xl mr-3">🖱️</span><div><strong>ネットショップへのアクセス数：</strong>売上への貢献度。</div></li>
+                    </ul>
+                </div>
+                 <div>
+                    <h3 class="text-xl font-bold text-[#0B2D48] mb-4 flex items-center gap-2">📺 YouTubeの目標</h3>
+                    <ul class="space-y-3 text-gray-700">
+                        <li class="flex items-start"><span class="text-xl mr-3">⏰</span><div><strong>動画を最後まで見てくれた人の割合：</strong>動画が面白かったかの証明。</div></li>
+                        <li class="flex items-start"><span class="text-xl mr-3">📈</span><div><strong>動画が全部で何時間見られたか：</strong>チャンネル全体の信頼度。</div></li>
+                        <li class="flex items-start"><span class="text-xl mr-3">🔎</span><div><strong>「南信堂」という名前での検索数：</strong>お店の知名度が上がったかの証。</div></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-[#0B2D48] text-white text-center p-4 mt-8">
+        <p>株式会社南信堂 SNS戦略共有資料</p>
+    </footer>
+
+    <script>
+        const engagementChartCtx = document.getElementById('engagementChart').getContext('2d');
+        const engagementChart = new Chart(engagementChartCtx, {
+            type: 'bar',
+            data: {
+                labels: ['短い動画', '複数枚の写真投稿', '写真1枚の投稿'],
+                datasets: [{
+                    label: '投稿への反応の良さ（平均）',
+                    data: [1.23, 1.92, 0.70],
+                    backgroundColor: ['#5BC0EB', '#FDE74C', '#246EB9'],
+                    borderColor: ['#246EB9', '#0B2D48', '#0B2D48'],
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            callback: value => value,
+                            color: '#0B2D48',
+                            font: { weight: 'bold' }
+                        },
+                        grid: { color: '#e0e0e0' }
+                    },
+                    x: {
+                       ticks: {
+                            color: '#0B2D48',
+                            font: { weight: 'bold', size: 14 }
+                        },
+                        grid: { display: false }
+                    }
+                },
+                plugins: {
+                    legend: { display: false },
+                    title: {
+                        display: true,
+                        text: '投稿の種類ごとの「反応の良さ」比較',
+                        font: { size: 16, weight: 'bold' },
+                        color: '#0B2D48',
+                        padding: { bottom: 20 }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            title: (tooltipItems) => {
+                                const item = tooltipItems[0];
+                                let label = item.chart.data.labels[item.dataIndex];
+                                return Array.isArray(label) ? label.join(' ') : label;
+                            },
+                            label: (context) => `${context.dataset.label || ''}: ${context.parsed.y}`
+                        },
+                        backgroundColor: '#0B2D48',
+                        titleFont: { size: 16 }, bodyFont: { size: 14 },
+                        padding: 10, cornerRadius: 5
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
