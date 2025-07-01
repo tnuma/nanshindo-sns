@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>有力インフルエンサーに選ばれる！楽天アフィリエイト戦略ガイド</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    <!--
+        Infographic Narrative Plan (Revised for Shop Owners):
+        1.  Title & Hook: Directly address shop owners with a title focused on attracting influencers.
+        2.  Core Concept: Frame the system as understanding the influencer's perspective to get chosen. Introduce the two key players: the Influencer (the target) and the Shop Owner (the strategist).
+        3.  The Influencer's Viewpoint: Detail how influencers see and calculate affiliate rates. The goal is to educate shop owners on what influencers look for.
+        4.  How Influencers Find Products: Provide a clear guide on the process influencers use, highlighting the importance of discoverability through high rates.
+        5.  Strategic Rate Setting for Shops: Show the benefits of high rates as a strategic tool to attract influencers, including a comparative sales chart.
+        6.  The Success Cycle: Conclude by visualizing the "Success Cycle" of attracting influencers, showing how strategic rates lead to mutual benefits and a sustainable partnership.
+
+        Visualization Choices & Justification (NO SVG, NO MERMAID JS):
+        -   Chosen Color Palette: "Energetic & Playful" (#00A6A6, #F28F3B, #D95F2B, #BF343F, #401A0D) for a vibrant, modern feel suitable for e-commerce strategy.
+        -   Base Genre Rates Chart: Horizontal Bar Chart (Chart.js). Goal: Compare. Justification: Best for clearly comparing values across distinct categories (genres). Implemented with Chart.js on Canvas.
+        -   Rate Calculation Flow: HTML/CSS Diagram. Goal: Organize. Justification: A simple visual flow built with styled divs and Unicode arrows is sufficient and avoids SVG/Mermaid.
+        -   Shop Sales Comparison Chart: Vertical Bar Chart (Chart.js). Goal: Compare. Justification: Ideal for a direct, powerful comparison between two scenarios (standard vs. high rate). Implemented with Chart.js on Canvas.
+        -   Setup & Success Cycle Flows: HTML/CSS Diagrams. Goal: Organize/Show Relationships. Justification: Using ordered lists and flexbox with styled divs and Unicode arrows creates clear, lightweight process flows without violating constraints.
+
+        Confirmation: NEITHER Mermaid JS NOR SVG were used anywhere in this output. All charts are rendered on Canvas by Chart.js, and all diagrams are built with standard HTML and CSS.
+    -->
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 40vh;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .gradient-text {
+            background: linear-gradient(45deg, #F28F3B, #D95F2B);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <div class="container mx-auto p-4 md:p-8 max-w-5xl">
+
+        <header class="text-center my-8 md:my-12">
+            <h1 class="text-4xl md:text-6xl font-black mb-2 gradient-text">有力インフルエンサーに選ばれる！<br>楽天アフィリエイト戦略</h1>
+            <p class="text-lg md:text-xl text-gray-600">ショップ運営者が知るべき、インフルエンサーを動かす「料率設定」の秘訣</p>
+        </header>
+
+        <main>
+            <section id="intro" class="my-12">
+                <p class="mt-8 text-center text-lg max-w-3xl mx-auto">数多くの商品の中から、なぜ特定の商品が有力なインスタグラマーに紹介されるのか？その鍵は「アフィリエイト料率」にあります。インフルエンサーの視点を理解し、彼らに選ばれるための戦略を立てましょう。</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center mt-8">
+                    <div class="bg-white rounded-lg shadow-lg p-6 text-center">
+                        <span class="text-6xl">👤</span>
+                        <h3 class="text-2xl font-bold mt-4 mb-2 text-[#00A6A6]">有力インフルエンサー</h3>
+                        <p>彼らは常に、自身のフォロワーに響き、かつ収益性の高い商品を探しています。アフィリエイト料率は、商品を選ぶ上で極めて重要な判断基準です。</p>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-lg p-6 text-center">
+                         <span class="text-6xl">🏬</span>
+                        <h3 class="text-2xl font-bold mt-4 mb-2 text-[#F28F3B]">戦略的なショップ運営者</h3>
+                        <p>インフルエンサーに「選ばれる」ための戦略的な料率設定が、売上を飛躍させる鍵となります。料率は、彼らへの最も分かりやすいメッセージです。</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="influencer-perspective" class="my-16">
+                <h2 class="text-3xl font-bold text-center mb-8">👤 インフルエンサーは報酬をこう見ている</h2>
+                
+                <div class="bg-white rounded-lg shadow-lg p-6 md:p-8 mb-8">
+                    <h3 class="text-2xl font-bold mb-4 text-[#00A6A6]">インフルエンサーの報酬が決まる仕組み</h3>
+                    <p class="mb-6">彼らが見ている報酬は、基本的な「ジャンル別料率」と、ショップが提供する「料率アップ」の合計です。この合計値が高いほど、彼らにとって魅力的な商品となります。</p>
+                    <div class="flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-8 text-center">
+                        <div class="p-4 bg-gray-100 rounded-lg shadow-inner">
+                            <p class="font-bold text-lg">ジャンル別料率</p>
+                            <p class="text-sm">(報酬の土台)</p>
+                        </div>
+                        <span class="text-4xl font-bold text-[#D95F2B]">+</span>
+                        <div class="p-4 bg-orange-100 border-2 border-[#F28F3B] rounded-lg shadow-inner">
+                            <p class="font-bold text-lg text-[#F28F3B]">ショップ独自の<br>料率アップ</p>
+                             <p class="text-sm">(選ばれる決め手)</p>
+                        </div>
+                         <span class="text-4xl font-bold text-[#D95F2B]">=</span>
+                         <div class="p-4 bg-teal-100 border-2 border-[#00A6A6] rounded-lg">
+                            <p class="font-bold text-lg text-[#00A6A6]">インフルエンサーの<br>最終的な報酬</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+                        <h3 class="text-xl font-bold mb-4">彼らがまず見る「ジャンル別料率」</h3>
+                        <p class="text-sm mb-4">報酬のベースとなる料率です。自社商品がどのジャンルに属し、基本的な魅力がどの程度か把握しておくことが重要です。</p>
+                        <div class="chart-container">
+                            <canvas id="genreRateChart"></canvas>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-2 text-right">出典：楽天アフィリエイト公式サイト ジャンル別料率情報</p>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+                        <h3 class="text-xl font-bold mb-4">彼らはこうして「儲かる商品」を探す</h3>
+                        <p class="text-sm mb-4">インフルエンサーは楽天ROOM内ではなく、専門の「楽天アフィリエイト」サイトで、より有利な条件の商品を常に探しています。</p>
+                        <ol class="list-decimal list-inside space-y-4">
+                            <li class="p-3 bg-gray-50 rounded-md">
+                                <span class="font-bold">楽天アフィリエイトで商品を検索</span>
+                                <p class="text-xs pl-4">ジャンルやキーワードで商品を絞り込みます。</p>
+                            </li>
+                            <li class="p-3 bg-gray-50 rounded-md">
+                                <span class="font-bold">検索結果を「料率順」で並び替え</span>
+                                 <p class="text-xs pl-4">最も効率的に高報酬の商品を見つけるための常套手段です。</p>
+                            </li>
+                            <li class="p-3 bg-gray-50 rounded-md">
+                                <span class="font-bold">高料率の商品を優先的に紹介</span>
+                                 <p class="text-xs pl-4">同じような商品なら、料率が高い方が選ばれます。</p>
+                            </li>
+                        </ol>
+                         <div class="mt-4 p-3 bg-[#F28F3B] text-white rounded-lg shadow">
+                            <p class="font-bold">🚀 ここがポイント:</p>
+                            <p class="text-sm">高い料率を設定することは、この「宝探し」の地図に、あなたの商品を大きく掲載するようなものです。</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="shop-strategy" class="my-16">
+                 <h2 class="text-3xl font-bold text-center mb-8">🏬 インフルエンサーに選ばれるための料率戦略</h2>
+                 <p class="text-center max-w-3xl mx-auto mb-8">料率アップは単なるコストではありません。有力なインフルエンサーをパートナーにするための、最も効果的な「戦略的投資」です。</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                     <div class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+                        <h3 class="text-xl font-bold mb-4">料率アップがもたらす2つの絶大な効果</h3>
+                        <div class="space-y-4">
+                            <div class="p-4 bg-teal-50 rounded-lg">
+                                <h4 class="font-bold text-lg text-[#00A6A6]">① 発見される確率が劇的に向上</h4>
+                                <p>数多ある商品の中から、あなたの商品を見つけてもらうための強力なシグナルになります。「この商品は紹介する価値がある」という無言のメッセージです。</p>
+                            </div>
+                            <div class="p-4 bg-orange-50 rounded-lg">
+                                 <h4 class="font-bold text-lg text-[#F28F3B]">② 高額商品でも紹介対象に</h4>
+                                 <p>通常1,000円の報酬上限が撤廃されるため、インフルエンサーは高額商品でもためらわずに紹介できます。これは他社との大きな差別化要因です。</p>
+                            </div>
+                        </div>
+                        <h3 class="text-xl font-bold my-4">設定はRMSから簡単3ステップ</h3>
+                        <p class="text-sm mb-4">店舗運営システム「RMS」から、誰でも簡単に戦略的な料率設定が可能です。</p>
+                         <ol class="relative border-l border-gray-200">                  
+                            <li class="mb-6 ml-4">
+                                <div class="absolute w-3 h-3 bg-gray-400 rounded-full mt-1.5 -left-1.5 border border-white"></div>
+                                <h4 class="font-bold">RMSにログイン</h4>
+                            </li>
+                            <li class="mb-6 ml-4">
+                                <div class="absolute w-3 h-3 bg-gray-400 rounded-full mt-1.5 -left-1.5 border border-white"></div>
+                                <h4 class="font-bold">プロモーションメニューへ</h4>
+                            </li>
+                            <li class="ml-4">
+                               <div class="absolute w-3 h-3 bg-gray-400 rounded-full mt-1.5 -left-1.5 border border-white"></div>
+                                <h4 class="font-bold">料率アップキャンペーンを設定</h4>
+                            </li>
+                        </ol>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+                        <h3 class="text-xl font-bold mb-4">料率アップが売上に与えるインパクト</h3>
+                        <p class="text-sm mb-4">料率アップは、インフルエンサーによるプロモーションを活性化させ、売上を飛躍的に増加させるポテンシャルを秘めています。</p>
+                        <div class="chart-container">
+                            <canvas id="salesImpactChart"></canvas>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-2 text-right">※当グラフは料率アップによるプロモーション強化のインパクトを視覚化したイメージです。</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="ecosystem" class="my-16 text-center">
+                <h2 class="text-3xl font-bold mb-4">インフルエンサーを巻き込む成功サイクル</h2>
+                <p class="max-w-3xl mx-auto mb-8">戦略的な料率設定から始まるこのサイクルは、ショップとインフルエンサー双方の成長を加速させます。</p>
+                <div class="flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-4">
+                    <div class="p-4 rounded-lg bg-white shadow-md w-52">
+                        <p class="text-lg font-bold text-[#F28F3B]">1. ショップ</p>
+                        <p class="text-sm">戦略的な高料率を設定</p>
+                    </div>
+                    <p class="text-3xl font-bold text-gray-400 transform md:rotate-0 rotate-90">→</p>
+                    <div class="p-4 rounded-lg bg-white shadow-md w-52">
+                        <p class="text-lg font-bold text-[#00A6A6]">2. インフルエンサー</p>
+                        <p class="text-sm">魅力的な商品として発見・紹介</p>
+                    </div>
+                    <p class="text-3xl font-bold text-gray-400 transform md:rotate-0 rotate-90">→</p>
+                    <div class="p-4 rounded-lg bg-white shadow-md w-52">
+                        <p class="text-lg font-bold text-[#D95F2B]">3. 売上＆エンゲージメントUP</p>
+                        <p class="text-sm">双方に利益が生まれる</p>
+                    </div>
+                     <p class="text-3xl font-bold text-gray-400 transform md:rotate-0 rotate-90">↻</p>
+                </div>
+            </section>
+
+        </main>
+        
+        <footer class="text-center mt-12 py-6 border-t">
+            <p class="text-gray-500">この資料は、ショップ運営者様の戦略立案を目的として、公開情報を基に作成されたものです。</p>
+        </footer>
+
+    </div>
+
+    <script>
+        function wrapLabels(label, maxLength) {
+            if (typeof label !== 'string' || label.length <= maxLength) {
+                return label;
+            }
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = '';
+            words.forEach(word => {
+                if ((currentLine + ' ' + word).trim().length > maxLength && currentLine.length > 0) {
+                    lines.push(currentLine);
+                    currentLine = word;
+                } else {
+                    currentLine = (currentLine + ' ' + word).trim();
+                }
+            });
+            if (currentLine) {
+                lines.push(currentLine);
+            }
+            return lines;
+        }
+
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            }
+            return label;
+        };
+        
+        const sharedTooltipOptions = {
+             plugins: {
+                tooltip: {
+                    callbacks: {
+                        title: tooltipTitleCallback
+                    }
+                }
+            }
+        };
+
+        const genreRateData = {
+            labels: [
+                wrapLabels('ファッション, コスメ, 雑貨', 16),
+                wrapLabels('インテリア, 日用品', 16),
+                wrapLabels('家電, 腕時計, 車用品', 16)
+            ],
+            datasets: [{
+                label: '基本料率 (%)',
+                data: [4, 3, 2],
+                backgroundColor: ['#00A6A6', '#F28F3B', '#D95F2B'],
+                borderColor: ['#008a8a', '#d97d2b', '#c05024'],
+                borderWidth: 1
+            }]
+        };
+
+        const genreRateCtx = document.getElementById('genreRateChart').getContext('2d');
+        new Chart(genreRateCtx, {
+            type: 'bar',
+            data: genreRateData,
+            options: {
+                ...sharedTooltipOptions,
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                         ticks: {
+                            callback: function(value) {
+                                return value + '%'
+                            }
+                        }
+                    }
+                },
+                plugins: {
+                    ...sharedTooltipOptions.plugins,
+                    legend: {
+                        display: false
+                    }
+                }
+            }
+        });
+
+        const salesImpactData = {
+            labels: ['標準料率', '料率アップ時'],
+            datasets: [{
+                label: '相対的な売上',
+                data: [100, 250],
+                backgroundColor: ['#D95F2B', '#00A6A6'],
+                borderColor: ['#c05024', '#008a8a'],
+                borderWidth: 1
+            }]
+        };
+
+        const salesImpactCtx = document.getElementById('salesImpactChart').getContext('2d');
+        new Chart(salesImpactCtx, {
+            type: 'bar',
+            data: salesImpactData,
+            options: {
+                ...sharedTooltipOptions,
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                },
+                plugins: {
+                    ...sharedTooltipOptions.plugins,
+                    legend: {
+                        display: false
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
+
